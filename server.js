@@ -165,7 +165,7 @@ app.post('/extract-pdf', upload.single('resume'), async (req, res) => {
 
 app.post('/generate-letter', async (req, res) => {
   try {
-    const { name, role, company, skills, resumeText } = req.body;
+    const { name, role, company, skills, resumeText, jobDescription } = req.body;
 
     // Check 1: Required fields missing
     if (!name || !role || !company || !skills) {
@@ -193,7 +193,7 @@ app.post('/generate-letter', async (req, res) => {
       }
     }
 
-    const letter = await generateCoverLetter({ name, role, company, skills, resumeText });
+    const letter = await generateCoverLetter({ name, role, company, skills, resumeText, jobDescription });
     res.status(200).json({ success: true, letter });
 
   } catch (error) {

@@ -80,6 +80,11 @@
           </div>
         </div>
 
+        <div class="field">
+          <label for="job-description">Job Description <span style="color:var(--ink-faint)">optional</span></label>
+          <textarea id="job-description" placeholder="Paste the job description here for a more tailored letter..." style="min-height:120px;"></textarea>
+        </div>
+
         <!-- Level 2: Loading Spinner — shown/hidden by JS -->
         <div class="loading" id="loading-state">
           <div class="spinner"></div>
@@ -132,7 +137,25 @@
 
   </div>
 
-  <script src="script.js"></script>
+    
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="logo-mark" style="width:24px;height:24px;">
+        <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+      </div>
+      <span class="logo-text" style="font-size:16px;">Cover<span>Craft</span></span>
+    </div>
+    <p class="footer-tagline">Crafting careers, one letter at a time.</p>
+    <div class="footer-divider"></div>
+    <div class="footer-bottom">
+      <span>Built with AI · Powered by Gemini· Created by Yogesh</span>
+      <span>© 2026 CoverCraft. All rights reserved.</span>
+    </div>
+  </div>
+</footer>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="script.js"></script>   
 
 </body>
 </html>
