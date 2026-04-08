@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CoverCraft — AI Cover Letter Generator</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  
+
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="logo-mark">
+      <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+    </div>
+    <span class="logo-text">Cover<span>Craft</span></span>
+  </header>
+
+  <!-- Hero -->
+  <div class="hero">
+    <div class="hero-badge">AI-Powered</div>
+    <h1>Write your perfect<br/><em>cover letter</em> in seconds</h1>
+    <p>Fill in your details and let AI craft a personalized, professional cover letter tailored to the job.</p>
+  </div>
+
+  <!-- Main Two-Column Layout -->
+  <div class="main">
+
+    <!-- LEFT: Input Form -->
+    <div class="card" id="form-card">
+      <div class="card-header">
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+        </div>
+        <span class="card-title">Your Details</span>
+      </div>
+      <div class="card-body">
+
+        <!-- Error message box — shown by JS when fields are empty -->
+        <div class="error-msg" id="error-msg">
+          Please fill in all required fields before generating.
+        </div>
+
+        <div class="field">
+          <label for="candidate-name">Full Name <span style="color:var(--danger)">*</span></label>
+          <input type="text" id="candidate-name" placeholder="e.g. Priya Sharma" />
+        </div>
+
+        <div class="field">
+          <label for="job-role">Job Role <span style="color:var(--danger)">*</span></label>
+          <input type="text" id="job-role" placeholder="e.g. Frontend Developer" />
+        </div>
+
+        <div class="field">
+          <label for="company-name">Company Name <span style="color:var(--danger)">*</span></label>
+          <input type="text" id="company-name" placeholder="e.g. Razorpay" />
+        </div>
+
+        <div class="field">
+          <label for="key-skills">Key Skills <span style="color:var(--danger)">*</span></label>
+          <textarea id="key-skills" placeholder="e.g. React, Node.js, REST APIs, TypeScript, Git..."></textarea>
+          <p class="field-hint">Separate skills with commas</p>
+        </div>
+
+        <!-- Level 3 only: Resume Upload -->
+        <div class="divider"><span>Level 3 — Resume (optional)</span></div>
+
+        <div class="field">
+          <label>Upload Resume (PDF)</label>
+          <div class="upload-area" id="upload-area">
+            <input type="file" id="resume-file" accept=".pdf" />
+            <svg class="upload-icon" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+            <p class="upload-label"><strong>Click to upload</strong> or drag and drop</p>
+            <p class="upload-label" style="font-size:12px; margin-top:3px;">PDF only · Max 5MB</p>
+            <p class="upload-filename" id="upload-filename"></p>
+          </div>
+        </div>
+
+        <!-- Level 2: Loading Spinner — shown/hidden by JS -->
+        <div class="loading" id="loading-state">
+          <div class="spinner"></div>
+          <span>Generating your cover letter...</span>
+        </div>
+
+        <button class="btn-generate" id="btn-generate">
+          <svg class="btn-icon" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+          Generate Cover Letter
+        </button>
+
+      </div>
+    </div>
+
+    <!-- RIGHT: Output Panel -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+        </div>
+        <span class="card-title">Generated Letter</span>
+      </div>
+      <div class="card-body" style="padding: 0;">
+
+        <!-- Empty state — visible before generation -->
+        <div class="empty-state" id="empty-state">
+          <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+          <p>Fill in your details and click Generate to create your personalized cover letter.</p>
+        </div>
+
+        <!-- Output area — hidden until JS generates letter -->
+          <div class="output-panel" id="output-panel" style="padding: 22px 24px;">
+            <div class="output-letter" id="output-letter">
+              <!-- Letter text goes here, set by JavaScript -->
+            </div>
+            <div class="output-actions">
+              <button class="btn-action btn-copy" id="btn-copy">
+                <svg viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                <span id="btn-copy-text">Copy to Clipboard</span>
+              </button>
+              <button class="btn-action" id="btn-download">
+                <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                Download PDF
+              </button>
+            </div>
+          </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <script src="script.js"></script>
+
+</body>
+</html>

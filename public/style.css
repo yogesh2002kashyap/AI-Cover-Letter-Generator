@@ -1,0 +1,367 @@
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink: #1a1a18;
+      --ink-muted: #6b6b65;
+      --ink-faint: #b0b0a8;
+      --bg: #f5f3ee;
+      --surface: #fdfcfa;
+      --border: #e2dfd7;
+      --accent: #2d5a4e;
+      --accent-light: #e8f2ef;
+      --accent-hover: #234840;
+      --danger: #c0392b;
+      --radius: 10px;
+      --radius-lg: 16px;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      min-height: 100vh;
+      padding: 0 0 80px;
+    }
+
+    /* ── Header ── */
+    header {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 18px 40px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo-mark {
+      width: 32px; height: 32px;
+      background: var(--accent);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    .logo-mark svg { width: 18px; height: 18px; fill: #fff; }
+
+    .logo-text {
+      font-family: 'DM Serif Display', serif;
+      font-size: 20px;
+      color: var(--ink);
+      letter-spacing: -0.3px;
+    }
+
+    .logo-text span { color: var(--accent); }
+
+    /* ── Hero ── */
+    .hero {
+      text-align: center;
+      padding: 56px 20px 40px;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: var(--accent-light);
+      color: var(--accent);
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      padding: 5px 14px;
+      border-radius: 20px;
+      margin-bottom: 20px;
+    }
+
+    .hero h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(32px, 5vw, 50px);
+      line-height: 1.15;
+      letter-spacing: -1px;
+      color: var(--ink);
+      margin-bottom: 14px;
+    }
+
+    .hero h1 em { font-style: italic; color: var(--accent); }
+
+    .hero p {
+      font-size: 16px;
+      color: var(--ink-muted);
+      max-width: 480px;
+      margin: 0 auto;
+      line-height: 1.65;
+    }
+
+    /* ── Main Layout ── */
+    .main {
+      max-width: 1060px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      align-items: start;
+    }
+
+    @media (max-width: 760px) {
+      .main { grid-template-columns: 1fr; }
+      header { padding: 16px 20px; }
+    }
+
+    /* ── Cards ── */
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+    }
+
+    .card-header {
+      padding: 20px 24px 16px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .card-icon {
+      width: 30px; height: 30px;
+      border-radius: 7px;
+      background: var(--accent-light);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .card-icon svg { width: 15px; height: 15px; stroke: var(--accent); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+    .card-title {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--ink);
+    }
+
+    .card-body { padding: 22px 24px; }
+
+    /* ── Form Fields ── */
+    .field { margin-bottom: 18px; }
+    .field:last-of-type { margin-bottom: 0; }
+
+    label {
+      display: block;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--ink-muted);
+      margin-bottom: 7px;
+      letter-spacing: 0.1px;
+    }
+
+    input[type="text"],
+    textarea {
+      width: 100%;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      color: var(--ink);
+      padding: 10px 13px;
+      outline: none;
+      transition: border-color 0.15s, box-shadow 0.15s;
+      resize: vertical;
+    }
+
+    input[type="text"]:focus,
+    textarea:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(45, 90, 78, 0.12);
+    }
+
+    input::placeholder, textarea::placeholder { color: var(--ink-faint); }
+
+    textarea { min-height: 100px; line-height: 1.55; }
+
+    /* Skills tag hint */
+    .field-hint {
+      font-size: 12px;
+      color: var(--ink-faint);
+      margin-top: 5px;
+    }
+
+    /* ── File Upload ── */
+    .upload-area {
+      border: 1.5px dashed var(--border);
+      border-radius: var(--radius);
+      padding: 20px;
+      text-align: center;
+      cursor: pointer;
+      transition: border-color 0.15s, background 0.15s;
+      background: var(--bg);
+      position: relative;
+    }
+
+    .upload-area:hover {
+      border-color: var(--accent);
+      background: var(--accent-light);
+    }
+
+    .upload-area input[type="file"] {
+      position: absolute; inset: 0;
+      opacity: 0; cursor: pointer; width: 100%;
+    }
+
+    .upload-icon { width: 28px; height: 28px; margin: 0 auto 8px; stroke: var(--ink-faint); fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+
+    .upload-label {
+      font-size: 13px;
+      color: var(--ink-muted);
+    }
+
+    .upload-label strong { color: var(--accent); font-weight: 500; }
+
+    .upload-filename {
+      display: none;
+      font-size: 13px;
+      color: var(--accent);
+      font-weight: 500;
+      margin-top: 6px;
+    }
+
+    /* ── Divider ── */
+    .divider {
+      display: flex; align-items: center; gap: 10px;
+      margin: 20px 0;
+    }
+
+    .divider::before, .divider::after {
+      content: ''; flex: 1; height: 1px; background: var(--border);
+    }
+
+    .divider span { font-size: 12px; color: var(--ink-faint); }
+
+    /* ── Error Message ── */
+    .error-msg {
+      display: none;
+      background: #fdf0ef;
+      border: 1px solid #f5c6c2;
+      border-radius: var(--radius);
+      color: var(--danger);
+      font-size: 13px;
+      padding: 10px 14px;
+      margin-bottom: 16px;
+    }
+
+    /* ── Submit Button ── */
+    .btn-generate {
+      width: 100%;
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      border-radius: var(--radius);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 15px;
+      font-weight: 500;
+      padding: 13px;
+      cursor: pointer;
+      transition: background 0.15s, transform 0.1s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      letter-spacing: 0.1px;
+    }
+
+    .btn-generate:hover { background: var(--accent-hover); }
+    .btn-generate:active { transform: scale(0.985); }
+    .btn-generate:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+
+    .btn-icon { width: 17px; height: 17px; stroke: #fff; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+    /* ── Loading State ── */
+    .loading {
+      display: none;
+      align-items: center;
+      gap: 10px;
+      padding: 16px 0;
+      color: var(--ink-muted);
+      font-size: 14px;
+    }
+
+    .spinner {
+      width: 18px; height: 18px;
+      border: 2px solid var(--border);
+      border-top-color: var(--accent);
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+      flex-shrink: 0;
+    }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ── Output Panel ── */
+    .output-panel {
+      display: none;
+    }
+
+    .output-letter {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px;
+      font-size: 14px;
+      line-height: 1.75;
+      color: var(--ink);
+      white-space: pre-wrap;
+      min-height: 300px;
+      font-family: 'DM Serif Display', serif;
+    }
+
+    .output-letter p { margin-bottom: 1em; }
+
+    .output-actions {
+      display: flex;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .btn-action {
+      flex: 1;
+      background: transparent;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--ink-muted);
+      padding: 9px 14px;
+      cursor: pointer;
+      transition: all 0.15s;
+      display: flex; align-items: center; justify-content: center; gap: 6px;
+    }
+
+    .btn-action:hover {
+      background: var(--accent-light);
+      color: var(--accent);
+      border-color: var(--accent);
+    }
+
+    .btn-action svg { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+    .btn-copy.copied {
+      background: var(--accent-light);
+      color: var(--accent);
+      border-color: var(--accent);
+    }
+
+    /* ── Empty State ── */
+    .empty-state {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 60px 24px;
+      text-align: center;
+      color: var(--ink-faint);
+      gap: 12px;
+    }
+
+    .empty-state svg { width: 40px; height: 40px; stroke: var(--ink-faint); fill: none; stroke-width: 1.2; stroke-linecap: round; stroke-linejoin: round; opacity: 0.5; }
+
+    .empty-state p { font-size: 14px; line-height: 1.6; max-width: 240px; }
