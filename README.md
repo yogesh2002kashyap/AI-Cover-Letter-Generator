@@ -63,7 +63,7 @@ AI Cover Letter Generator/
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/your-username/cover-letter-generator.git
+git clone https://github.com/yogesh2002kasyap/cover-letter-generator.git
 cd cover-letter-generator
 
 # 2. Install dependencies
